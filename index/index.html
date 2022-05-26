@@ -1,451 +1,464 @@
 <!doctype html>
 <html class="no-js" lang="en">
-    <head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-        <meta charset="utf-8">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
 
-        <!-- Page Title Here -->
-        <title>Land-大地者</title>
-		
-        <!-- Page Description Here -->
-		<meta name="description" content="Personal website of JerryMu">
+    <!-- Page Title Here -->
+    <title>Land-大地者</title>
 
-        <!-- Disable screen scaling-->
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <!-- Page Description Here -->
+    <meta name="description" content="Personal website of JerryMu">
 
-        <!-- Initializer -->
-        <link rel="stylesheet" href="./css/normalize.css">        
-        
-        <!-- Web fonts and Web Icons -->
-        <link rel="stylesheet" href="./css/pageloader.css">
-        <link rel="stylesheet" href="./fonts/opensans/stylesheet.css">
-        <link rel="stylesheet" href="./fonts/asap/stylesheet.css">
-        <link rel="stylesheet" href=" https://cdn.bootcss.com/ionicons/1.5.2/css/ionicons.min.css">
-        
-        <!-- Vendor CSS style -->
-        <link rel="stylesheet" href="./css/foundation.min.css">
-        <link rel="stylesheet" href="./js/vendor/jquery.fullPage.css">
-        <link rel="stylesheet" href="./js/vegas/vegas.min.css">
-        
-		<!-- Main CSS files -->
-        <link rel="stylesheet" href="./css/main.css">
-        <link rel="stylesheet" href="./css/main_responsive.css">
-        <link rel="stylesheet" href="./css/style-font1.css">
-        
-        <script src="./js/vendor/modernizr-2.7.1.min.js"></script>
-    </head>
-    <body id="menu" class="alt-bg">
+    <!-- Disable screen scaling-->
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, user-scalable=0">
+
+    <!-- Initializer -->
+    <link rel="stylesheet" href="./css/normalize.css">
+
+    <!-- Web fonts and Web Icons -->
+    <link rel="stylesheet" href="./css/pageloader.css">
+<!--    <link rel="stylesheet" href="./fonts/opensans/stylesheet.css">-->
+<!--    <link rel="stylesheet" href="./fonts/asap/stylesheet.css">-->
+<!--    <link rel="stylesheet" href=" https://cdn.bootcss.com/ionicons/1.5.2/css/ionicons.min.css">-->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Vendor CSS style -->
+    <link rel="stylesheet" href="./css/foundation.min.css">
+    <link rel="stylesheet" href="./js/vendor/jquery.fullPage.css">
+    <link rel="stylesheet" href="./js/vegas/vegas.min.css">
+
+    <!-- Main CSS files -->
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/main_responsive.css">
+    <link rel="stylesheet" href="./css/style-font1.css">
+
+    <script src="./js/vendor/modernizr-2.7.1.min.js"></script>
+</head>
+<body id="menu" class="alt-bg">
 <!--        &lt;!&ndash;[if lt IE 8]>-->
 <!--            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>-->
 <!--        <![endif]&ndash;&gt;-->
-        
+
 <!--		 Page Loader -->
-        <div class="page-loader" id="page-loader">
-            <div><i class="ion ion-loading-d"></i><p>loading</p></div>
+<!--<div class="page-loader" id="page-loader">-->
+<!--&lt;!&ndash;    <div><i class="ion ion-loading-d"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;        <p>loading</p></div>&ndash;&gt;-->
+<!--    <div><p>loading</p></div>-->
+<!--</div>-->
+
+<!-- BEGIN OF site header Menu -->
+<!-- Add "material" class for a material design style -->
+<header class="header-top">
+    <!--		<header class="header-top material">-->
+    <div class="logo">
+        <a href="#home">
+            <img src="img/logo_large.png" alt="Logo Land">
+        </a>
+    </div>
+    <div class="menu clearfix">
+        <a href="#about_me">about</a>
+        <!-- Add other menu similar to "about" here -->
+        <a href="photos.html">相册</a>
+        <a href="#link">链接</a>
+    </div>
+</header>
+<!-- END OF site header Menu-->
+
+<!-- BEGIN OF Quick nav icons at left -->
+<nav class="quick-link count-6 nav-left">
+    <ul id="qmenu">
+        <li data-menuanchor="home">
+            <a href="#home" class=""><i class="fa fa-home"></i>
+            </a>
+            <span class="title">主页</span>
+        </li>
+        <li data-menuanchor="when">
+            <a href="#when" class=""><i class="fa fa-clock-o"></i>
+            </a>
+            <span class="title">倒计时</span>
+        </li>
+        <li data-menuanchor="link">
+            <a href="#link"><i class="fa fa-link"></i>
+            </a>
+            <span class="title">链接</span>
+        </li>
+        <li data-menuanchor="message">
+            <a href="#message"><i class="fa fa-send"></i>
+            </a>
+            <span class="title">留言板</span>
+        </li>
+        <li data-menuanchor="about_me">
+            <a href="#about_me"><i class="fa fa-user"></i>
+            </a>
+            <span class="title">关于</span>
+        </li>
+        <li data-menuanchor="statement">
+            <a href="#statement"><i class="fa fa-exclamation-circle"></i>
+            </a>
+            <span class="title">声明</span>
+        </li>
+    </ul>
+</nav>
+<!-- END OF Quick nav icons at left -->
+
+<!-- BEGIN OF site cover -->
+<div class="page-cover" id="home">
+    <!-- Cover Background -->
+    <div class="cover-bg pos-abs full-size bg-img" data-image-src="img/bg-default.jpg"></div>
+
+    <!-- BEGIN OF Slideshow Background -->
+    <div class="cover-bg pos-abs full-size slide-show">
+        <i class='img' data-src='./img/bg-slide1.jpg'></i>
+        <i class='img' data-src='./img/bg-slide2.jpg'></i>
+        <i class='img' data-src='./img/bg-slide3.jpg'></i>
+    </div>
+    <!-- END OF Slideshow Background -->
+    <!-- Solid color as filter or as background -->
+    <div class="cover-bg pos-abs full-size bg-color" data-bgcolor="rgba(51, 2, 48, 0.12)"></div>
+
+</div>
+<!--END OF site Cover -->
+
+<!-- BEGIN OF site main content content here -->
+<main class="page-main" id="mainpage">
+
+    <!-- Begin of home page -->
+    <div class="section page-home page page-cent" id="s-home">
+        <!-- Logo -->
+        <div class="logo-container">
+            <img class="h-logo" src="img/logo_only.png" alt="Logo">
         </div>
-        
-        <!-- BEGIN OF site header Menu -->
-		<!-- Add "material" class for a material design style -->
-		<header class="header-top">
-<!--		<header class="header-top material">-->
-			<div class="logo">
-				<a href="#home">
-					<img src="img/logo_large.png" alt="Logo Land">
-				</a>
-			</div>
-            <div class="menu clearfix">
-                <a href="#about_me">about</a>
-				<!-- Add other menu similar to "about" here -->
-                <a href="photos.html">相册</a>
-                <a href="#link">链接</a>
+        <!-- Content -->
+        <section class="content">
+
+            <header class="header">
+                <div class="h-left">
+                    <h2>Personal site <strong>Portal</strong></h2>
+                </div>
+                <div class="h-right">
+                    <h3>jerry <br>mu</h3>
+                    <h4 class="subhead"><a href="#when">倒计时</a></h4>
+                </div>
+            </header>
+        </section>
+
+        <!-- Scroll down button -->
+        <footer class="p-footer p-scrolldown">
+            <a href="#when">
+                <div class="arrow-d">
+                    <div class="before">Explore</div>
+                    <div class="after">Next</div>
+                    <div class="circle"></div>
+                </div>
+            </a>
+        </footer>
+    </div>
+    <!-- End of home page -->
+
+    <!-- Begin of timer page -->
+    <div class="section page-when page page-cent" id="s-when">
+        <section class="content">
+            <div class="clock clock-countdown">
+                <div class="site-config"
+                     data-date="11/04/2022 00:00:00"
+                     data-date-timezone="+8"
+                ></div>
+                <header class="header">
+                    Coming <strong>soon</strong>
+                </header>
+                <div class="elem-left">
+                    <div class="digit hours">00</div>
+                    <div class="text">小时</div>
+                </div>
+                <div class="elem-center">
+                    <!-- Optional text at top or image logo -->
+                    <!--<span class="text top">here in</span>-->
+                    <!-- Optional logo at top -->
+                    <span class="text top"><img class="img" alt="Logo" src="img/logo_large.png"></span>
+                    <div class="digit days">000</div>
+                    <div class="text">天</div>
+                </div>
+                <div class=" elem-right">
+                    <div class="digit minutes">00</div>
+                    <div class="text">分</div>
+                </div>
+
+                <!-- second knob here -->
+                <div class="second">
+                    <input class="knob container"
+                           id="second-knob"
+                           data-width="400"
+                           data-height="400"
+                           data-displayInput=false
+                           data-fgColor="#fff"
+                           data-bgColor="rgba(255,255,255,0)"
+                           data-thickness=".07"
+                           value="0"
+                           data-displayPrevious=true
+                           data-max="6000"
+                    />
+                </div>
             </div>
-		</header>
-        <!-- END OF site header Menu-->
-        
-        <!-- BEGIN OF Quick nav icons at left -->
-		<nav class="quick-link count-6 nav-left">
-			<ul id="qmenu">
-				<li data-menuanchor="home">
-					<a href="#home" class=""><i class="icon ion ion-home"></i>
-					</a>
-					<span class="title">主页</span>
-				</li>
-				<li data-menuanchor="when">
-					<a href="#when" class=""><i class="icon ion ion-android-alarm"></i>
-					</a>
-					<span class="title">倒计时</span>
-				</li>
-				<li data-menuanchor="link">
-					<a href="#link"><i class="icon ion ion-link"></i>
-					</a>
-					<span class="title">链接</span>
-				</li>
-				<li data-menuanchor="message">
-					<a href="#message"><i class="icon ion ion-chatbox-working"></i>
-					</a>
-					<span class="title">留言板</span>
-				</li>
-				<li data-menuanchor="about_me">
-					<a href="#about_me"><i class="icon ion ion-person"></i>
-					</a>
-					<span class="title">关于</span>
-				</li>
-				<li data-menuanchor="statement">
-					<a href="#statement"><i class="icon ion ion-android-information"></i>
-					</a>
-					<span class="title">声明</span>
-				</li>
-			</ul>
-		</nav>
-        <!-- END OF Quick nav icons at left -->
 
-        <!-- BEGIN OF site cover -->
-        <div class="page-cover" id="home">
-            <!-- Cover Background -->
-            <div class="cover-bg pos-abs full-size bg-img" data-image-src="img/bg-default.jpg"></div>
-			
-            <!-- BEGIN OF Slideshow Background -->
-            <div class="cover-bg pos-abs full-size slide-show">
-				<i class='img' data-src='./img/bg-slide1.jpg'></i>
-				<i class='img' data-src='./img/bg-slide2.jpg'></i>
-				<i class='img' data-src='./img/bg-slide3.jpg'></i>
-			</div>
-            <!-- END OF Slideshow Background -->
-			<!-- Solid color as filter or as background -->
-            <div class="cover-bg pos-abs full-size bg-color" data-bgcolor="rgba(51, 2, 48, 0.12)"></div>
-            
-        </div>
-        <!--END OF site Cover -->
-        
-        <!-- BEGIN OF site main content content here -->
-        <main class="page-main" id="mainpage">             
-            
-			<!-- Begin of home page -->
-			<div class="section page-home page page-cent" id="s-home">
-				<!-- Logo -->
-				<div class="logo-container">
-					<img class="h-logo" src="img/logo_only.png" alt="Logo">
-				</div>
-				<!-- Content -->
-				<section class="content">
-					
-					<header class="header">
-						<div class="h-left">
-							<h2>Personal site <strong>Portal</strong></h2>
-						</div>
-						<div class="h-right">
-							<h3>jerry <br>mu</h3>
-							<h4 class="subhead"><a href="#when">倒计时</a></h4>
-						</div>
-					</header>
-				</section>
-				
-				<!-- Scroll down button -->
-                <footer class="p-footer p-scrolldown">
-                    <a href="#when">
-                        <div class="arrow-d">
-							<div class="before">Explore</div>
-							<div class="after">Next</div>
-							<div class="circle"></div>
-						</div>
-                    </a>                        
-                </footer>
-			</div>
-			<!-- End of home page -->
-            
-            <!-- Begin of timer page -->
-            <div class="section page-when page page-cent" id="s-when">
-                <section class="content">
-                    <div class="clock clock-countdown">
-						<div class="site-config"
-							 data-date="11/04/2022 00:00:00"
-							 data-date-timezone="+8"
-							 ></div>
-						<header class="header">
-							Coming <strong>soon</strong>
-						</header>
-                        <div class="elem-left">
-                            <div class="digit hours">00</div>
-                            <div class="text">小时</div>
-                        </div>						
-                        <div class="elem-center">
-							<!-- Optional text at top or image logo -->
-							<!--<span class="text top">here in</span>-->
-							<!-- Optional logo at top -->
-							<span class="text top"><img class="img" alt="Logo" src="img/logo_large.png"></span>
-                            <div class="digit days">000</div>
-                            <div class="text">天</div>
-                        </div>
-                        <div class=" elem-right">
-                            <div class="digit minutes">00</div>
-                            <div class="text">分</div>
-                        </div>
-						
-						<!-- second knob here -->
-						<div class="second">
-							<input class="knob container" 
-								   id="second-knob"
-								  	data-width="400"
-								  	data-height="400"
-								 data-displayInput=false
-									data-fgColor="#fff"
-									data-bgColor="rgba(255,255,255,0)"
-									data-thickness=".07"
-								 	value="0"
-									data-displayPrevious=true
-								   data-max="6000"
-								   />
-						</div>
-                    </div>                   
-                    
-                </section>                
-                <footer class="p-footer p-scrolldown">
-                    <a href="#link">
-                        <div class="arrow-d">
-							<div class="before">Explore</div>
-							<div class="after">Next</div>
-							<div class="circle"></div>
-						</div>
-                    </a>                        
-                </footer>
+        </section>
+        <footer class="p-footer p-scrolldown">
+            <a href="#link">
+                <div class="arrow-d">
+                    <div class="before">Explore</div>
+                    <div class="after">Next</div>
+                    <div class="circle"></div>
+                </div>
+            </a>
+        </footer>
+    </div>
+    <!-- End of timer page -->
+
+    <!-- Begin of link page -->
+    <div class="section page-link page page-cent " id="s-link">
+        <section class="content">
+            <header class="p-title">
+                <h3>链接 <i class="fa fa-link"></i></h3>
+            </header>
+            <div class="contact">
+                <div class="row">
+                    <div class="medium-6 columns left">
+                        <ul>
+                            <li>
+                                <a href="http://muyusheng.com/file" target="_blank"
+                                   style="font-size: x-large;font-weight: bolder">
+                                    <i class="fa fa-file"></i>&nbsp;文件服务器
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://muyusheng.com:8080" target="_blank"
+                                   style="font-size: x-large;font-weight: bolder">
+                                    <i class="fa fa-address-book"></i>&nbsp;同学录
+                                </a>
+                            </li>
+                            <li>
+                                <a href="photos.html" target="_blank" style="font-size: x-large;font-weight: bolder">
+                                    <i class="fa fa-photo"></i>&nbsp;相册
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="medium-6 columns social-links right">
+                        <ul>
+                            <!-- legal notice -->
+                            <li class="show-for-medium-up">
+                                <a href="https://https://blog.csdn.net/muyusheng007" target="_blank" style="font-size: x-large;font-weight: bolder">
+                                    <i class="fa fa-file-text-o"></i>&nbsp;文章博客
+                                </a>
+                            </li>
+                            <li class="show-for-medium-up">
+                                <a href="https://https://github.com/muyusheng0" target="_blank" style="font-size: x-large;font-weight: bolder">
+                                    <i class="fa fa-file-code-o"></i>&nbsp;代码管理
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
             </div>
-            <!-- End of timer page -->
-            
-            <!-- Begin of link page -->
-            <div class="section page-link page page-cent " id="s-link">
-                <section class="content">
-                    <header class="p-title">
-                        <h3>链接 <i class="ion  ion-link"></i></h3>
-                    </header>
-					<div class="contact">
-						<div class="row">
-							<div class="medium-6 columns left">
-									<ul>
-										<li>
-											<a href="http://muyusheng.com/file" target="_blank" style="font-size: x-large;font-weight: bolder">
-												<i class="ion ion-android-folder"></i>&nbsp;文件服务器
-											</a>
-										</li>
-										<li>
-											<a href="http://muyusheng.com:8080" target="_blank" style="font-size: x-large;font-weight: bolder">
-												<i class="ion ion-person-stalker"></i>&nbsp;同学录
-											</a>
-										</li>
-										<li>
-											<a href="photos.html" target="_blank" style="font-size: x-large;font-weight: bolder">
-												<i class="ion ion-images"></i>&nbsp;相册
-											</a>
-										</li>
-									</ul>
-								</div>
-							<div class="medium-6 columns social-links right">
-									<ul>
-										<!-- legal notice -->
-										<li class="show-for-medium-up">
-											<a href="#" target="_blank" style="font-size: x-large;font-weight: bolder">
-												<i class="ion ion-document-text"></i>&nbsp;文章博客
-											</a>
-										</li>
-										<li class="show-for-medium-up">
-											<a href="#" target="_blank" style="font-size: x-large;font-weight: bolder">
-												<i class="ion ion-social-github"></i>&nbsp;代码管理
-											</a>
-										</li>
-									</ul>
+        </section>
+        <footer class="p-footer p-scrolldown">
+            <a href="#message">
+                <div class="arrow-d">
+                    <div class="before">Explore</div>
+                    <div class="after">Next</div>
+                    <div class="circle"></div>
+                </div>
+            </a>
+        </footer>
+    </div>
+    <!-- End of link page -->
 
-								</div>
-						</div>
-					</div>
-                </section>
-                <footer class="p-footer p-scrolldown">
-                    <a href="#message">
-                        <div class="arrow-d">
-							<div class="before">Explore</div>
-							<div class="after">Next</div>
-							<div class="circle"></div>
-						</div>
-                    </a>                        
-                </footer>
+    <!-- Begin of message page -->
+    <div class="section page-message page page-cent " id="s-message">
+        <section class="content">
+            <header class="p-title">
+                <h3>留言板 <i class="fa fa-send"></i></h3>
+            </header>
+            <div>
+                <div class="wrapper">
+                    <div>
+                        <form class="message form send_message_form" method="get" action="ajaxserver/serverfile.php">
+                            <div class="fields clearfix">
+                                <div class="input">
+                                    <label for="mes-name">Name </label>
+                                    <input id="mes-name" name="name" type="text" placeholder="Your Name" required></div>
+                                <div class="buttons">
+                                    <button id="submit-message" class="button email_b" name="submit_message">Ok</button>
+                                </div>
+                            </div>
+                            <div class="fields clearfix">
+                                <div class="input">
+                                    <label for="mes-email">Email </label>
+                                    <input id="mes-email" type="email" placeholder="Email Address" name="email"
+                                           required>
+                                </div>
+                            </div>
+                            <div class="fields clearfix no-border">
+                                <label for="mes-text">Message </label>
+                                <textarea id="mes-text" placeholder="Message ..." name="message" required></textarea>
+
+                                <div>
+                                    <p class="message-ok invisible">Your message has been sent, thank you.</p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <!-- End of link page -->
-
-			<!-- Begin of message page -->
-			<div class="section page-message page page-cent " id="s-message">
-				<section class="content">
-					<header class="p-title">
-						<h3>留言板 <i class="ion  ion-chatbox-working"></i></h3>
-					</header>
-					<div>
-						<div class="wrapper">
-								<div>
-									<form class="message form send_message_form" method="get" action="ajaxserver/serverfile.php">
-										<div class="fields clearfix">
-											<div class="input">
-												<label for="mes-name">Name </label>
-												<input id="mes-name" name="name" type="text" placeholder="Your Name" required></div>
-											<div class="buttons">
-												<button id="submit-message" class="button email_b" name="submit_message">Ok</button>
-											</div>
-										</div>
-										<div class="fields clearfix">
-											<div class="input">
-												<label for="mes-email">Email </label>
-												<input id="mes-email" type="email" placeholder="Email Address" name="email" required>
-											</div>
-										</div>
-										<div class="fields clearfix no-border">
-											<label for="mes-text">Message </label>
-											<textarea id="mes-text" placeholder="Message ..." name="message" required></textarea>
-
-											<div>
-												<p class="message-ok invisible">Your message has been sent, thank you.</p>
-											</div>
-										</div>
-									</form>
-								</div>
-							</div>
-					</div>
-				</section>
-				<footer class="p-footer p-scrolldown">
-					<a href="#about_me">
-						<div class="arrow-d">
-							<div class="before">Explore</div>
-							<div class="after">Next</div>
-							<div class="circle"></div>
-						</div>
-					</a>
-				</footer>
-			</div>
-			<!-- End of message page -->
+        </section>
+        <footer class="p-footer p-scrolldown">
+            <a href="#about_me">
+                <div class="arrow-d">
+                    <div class="before">Explore</div>
+                    <div class="after">Next</div>
+                    <div class="circle"></div>
+                </div>
+            </a>
+        </footer>
+    </div>
+    <!-- End of message page -->
 
 
-            <!-- Begin of about_me page -->
-            <div class="section page-about_me page page-cent" id="s-about_me">
-                <section class="content">
-                    <header class="p-title">
-                        <h3>About<i class="ion ion-person">
-                            </i>
-                        </h3>
-						<h2>We <span class="bold">make</span> only <span class="bold">beautiful</span> things</h2>
-                    </header>
-                    <article class="text">
-                        <p>欢迎访问！这是JerryMu的<strong>个人门户网站</strong>,一名流浪帝都的自动驾驶程序员。</p>
-                        <p></p>
-                        <p>Wind in July and rain in August.Bless you！</p>
-                    </article>
-                </section>
-                <footer class="p-footer p-scrolldown">
-                    <a href="#statement">
-                        <div class="arrow-d">
-							<div class="before">Explore</div>
-							<div class="after">Next</div>
-							<div class="circle"></div>
-						</div>
-                    </a>                        
-                </footer>
+    <!-- Begin of about_me page -->
+    <div class="section page-about_me page page-cent" id="s-about_me">
+        <section class="content">
+            <header class="p-title">
+                <h3>About<i class="fa fa-user">
+                </i>
+                </h3>
+                <h2>We <span class="bold">make</span> only <span class="bold">beautiful</span> things</h2>
+            </header>
+            <article class="text">
+                <p>欢迎访问！这是JerryMu的<strong>个人门户网站</strong>,一名流浪帝都的自动驾驶程序员。</p>
+                <p></p>
+                <p>Wind in July and rain in August.Bless you！</p>
+            </article>
+        </section>
+        <footer class="p-footer p-scrolldown">
+            <a href="#statement">
+                <div class="arrow-d">
+                    <div class="before">Explore</div>
+                    <div class="after">Next</div>
+                    <div class="circle"></div>
+                </div>
+            </a>
+        </footer>
+    </div>
+    <!-- End of about us page -->
+
+
+    <!-- Begin of statement page   -->
+    <div class="section page-statement page page-cent" id="s-statement">
+        <section class="content">
+            <header class="p-title">
+                <h3>Statement<i class="fa fa-exclamation-circle">
+                </i>
+                </h3>
+            </header>
+            <div class="statement">
+                <div class="row">
+                    <div class="medium-6 columns left">
+                        <ul>
+                            <li>
+                                <h4>Email</h4>
+                                <p><a href="https://mail.163.com">muyusheng0@163.com</a></p>
+                            </li>
+                            <li>
+                                <h4>Address</h4>
+                                <p>朝阳区
+                                    <br>中国 北京</p>
+                            </li>
+                            <li>
+                                <h4>QQ</h4>
+                                <p>1216781661</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="medium-6 columns social-links right">
+                        <ul>
+
+                            <!-- legal notice -->
+                            <li>
+                                <p><img src="img/logo_large.png" alt="Logo" class="logo"></p>
+                                <p class="small">Designed by <strong><a href="http://muyusheng.com">Land
+                                    大地者</a></strong>. All right reserved 2022</p>
+                            </li>
+                            <li>
+                                <a href="http://beian.miit.gov.cn" target="_blank">
+                                    <span class="middle" style="color: white">鲁ICP备20023589号-1</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37010102000814"
+                                   target="_blank">
+                                    <img src="img/beian.png" style="vertical-align:middle;"/>
+                                    <span class="middle" style="color: white">鲁公网安备 37010102000814号</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <!-- End of about us page -->
+        </section>
+    </div>
+    <!-- End of statement page  -->
 
+</main>
 
-			<!-- Begin of statement page   -->
-            <div class="section page-statement page page-cent" id="s-statement">
-				<section class="content">
-						<header class="p-title">
-							<h3>Statement<i class="ion ion-android-information">
-								</i>
-							</h3>
-						</header>
-						<div class="statement">
-							<div class="row">
-								<div class="medium-6 columns left">
-									<ul>
-										<li>
-											<h4>Email</h4>
-											<p><a href="https://mail.163.com">muyusheng0@163.com</a></p>
-										</li>
-										<li>
-											<h4>Address</h4>
-											<p>朝阳区
-											<br>中国 北京</p>
-										</li>
-										<li>
-											<h4>QQ</h4>
-											<p>1216781661</p>
-										</li>
-									</ul>
-								</div>
-								<div class="medium-6 columns social-links right">
-									<ul>
+<!-- END OF site main content content here -->
 
-										<!-- legal notice -->
-										<li>
-											<p><img src="img/logo_large.png" alt="Logo" class="logo"></p>
-											<p class="small">Designed by <strong><a href="http://muyusheng.com">Land 大地者</a></strong>. All right reserved 2022</p>
-										</li>
-										<li>
-											<a href="http://beian.miit.gov.cn" target="_blank">
-												<span class="middle" style="color: white">鲁ICP备20023589号-1</span>
-											</a>
-										</li>
-										<li>
-											<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37010102000814" target="_blank">
-												<img src="img/beian.png" style="vertical-align:middle;"/>
-												<span class="middle" style="color: white">鲁公网安备 37010102000814号</span>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-				</section>
-            </div>
-            <!-- End of statement page  -->
-        
-        </main>
-
-        <!-- END OF site main content content here -->  
-		
-		<!-- Begin of site footer -->
-		<footer class="page-footer">
+<!-- Begin of site footer -->
+<footer class="page-footer">
 			<span>
 			</span>
-		</footer>
-		<!-- End of site footer -->
+</footer>
+<!-- End of site footer -->
 
-        
-<!--        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
-        
-        <!-- All Javascript plugins goes here -->
-        <script src="./js/vendor/jquery-1.11.2.min.js"></script>
-		<!-- All vendor scripts -->
-        <script src="./js/vendor/all.js"></script>
-		
-		<!-- Detailed vendor scripts -->
-        <!--<script src="./js/vendor/jquery.fullPage.min.js"></script>
-        <script src="./js/vendor/jquery.slimscroll.min.js"></script>
-        <script src="./js/vendor/jquery.knob.min.js"></script>
-        <script src="./js/vegas/vegas.min.js"></script>
-        <script src="./js/jquery.maximage.js"></script>
-        <script src="./js/okvideo.min.js"></script>-->
-		
-		<!-- Downcount JS -->
-        <script src="./js/jquery.downCount.js"></script>
-		
-		<!-- Form script -->
-        <script src="./js/form_script.js"></script>
-        
-		<!-- Javascript main files -->
-        <script src="./js/main.js"></script>
-         
+<!--<script>-->
+<!--    setTimeout(2000,function(){-->
+<!--            $('#page-loader').addClass('hidden');-->
+<!--         })-->
+<!--</script>-->
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
 
-        <!-- Google Analytics: Uncomment and change UA-XXXXX-X to be your site"s ID. -->
-        <!--<script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src="//www.google-analytics.com/analytics.js";
-            r.parentNode.insertBefore(e,r)}(window,document,"script","ga"));
-            ga("create","UA-XXXXX-X");ga("send","pageview");
-        </script>-->
-    </body>
+<!-- All Javascript plugins goes here -->
+<script src="./js/vendor/jquery-1.11.2.min.js"></script>
+
+<!-- Detailed vendor scripts -->
+<!--<script src="./js/vendor/jquery.fullPage.min.js"></script>
+<script src="./js/vendor/jquery.slimscroll.min.js"></script>
+<script src="./js/vendor/jquery.knob.min.js"></script>
+<script src="./js/vegas/vegas.min.js"></script>
+<script src="./js/jquery.maximage.js"></script>
+<script src="./js/okvideo.min.js"></script>-->
+
+<!-- Downcount JS -->
+<script src="./js/jquery.downCount.js"></script>
+
+<!-- Form script -->
+<script src="./js/form_script.js"></script>
+
+<!-- Javascript main files -->
+<script src="./js/main.js"></script>
+
+<!-- All vendor scripts -->
+<script src="./js/vendor/all.js"></script>
+
+
+<!-- Google Analytics: Uncomment and change UA-XXXXX-X to be your site"s ID. -->
+<!--<script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src="//www.google-analytics.com/analytics.js";
+    r.parentNode.insertBefore(e,r)}(window,document,"script","ga"));
+    ga("create","UA-XXXXX-X");ga("send","pageview");
+</script>-->
+</body>
 </html>
