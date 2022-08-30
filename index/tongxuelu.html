@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>自动化八班</title>
+<script type="text/javascript" src="js/lib/jquery.js"></script>
+<script type="text/javascript" src="js/lib/raphael-min.js"></script>
+<script type="text/javascript" src="js/res/chinaMapConfig.js"></script>
+<script type="text/javascript" src="js/map.js"></script>
+
+<style type="text/css">
+/* base */
+html{background:url(images/txlbj.jpg);;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}body,ul,ol,dl,dd,h1,h2,h3,h4,h5,h6,p,form,fieldset,legend,input,textarea,select,button,th,td,div{margin:0; padding:0}button,input,select,textarea{font:12px/1.5 tahoma,Helvetica,arial,\5b8b\4f53}input,select,textarea{font-size:100%}table{border-collapse:collapse;border-spacing:0}th{text-align:inherit}fieldset,img{border:0}iframe{display:block}ol,ul,li{list-style:none}del{text-decoration:line-through}ins,a{text-decoration:none}a:focus{outline:none}h1,h2,h3,h4,h5,h6{font-size:100%}.clear{clear:both}.clearfix:after{content:".";display:block;height:0;font-size:0;clear:both;visibility:hidden}.clearfix{zoom:1}
+/* base */
+
+body{font:12px/1.5 "Lucida Grande","Lucida Sans Unicode", Tahoma, SimSun,Helvetica,sans-serif; color:#2E313A;}
+.wrap{ width:900px; margin:0 auto; background:url(images/txlbj.jpg); border-left:1px solid #DDD; border-right:1px solid #DDD;}
+a{color:#0e4279; -moz-transition:color 0.3s ease 0s;}
+a:hover{color:#5B636A;}
+h1{ padding:20px 0 0 20px; font-size:24px; line-height:50px;} 
+h2{ margin-top:30px; padding-left:10px; background-color: #ddd; font-size:14px; line-height:30px;}
+
+
+/* 提示自定义 */
+.stateTip, #StateTip{display:none; position:absolute; padding:8px; background:#fff; border:2px solid #2385B1; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; font-size:12px; font-family:Tahoma; color:#333;}
+
+.mapInfo i{ display:inline-block; width:15px; height:15px; margin-top:5px; line-height:15px; font-style:normal; background:#aeaeae; color:#fff; font-size:11px; font-family: Tahoma; -webkit-border-radius:15px; border-radius:15px; text-align:center}
+.mapInfo i.active{background:#E27F21;}
+.mapInfo span{ padding:0 5px 0 3px;}
+.mapInfo b{ font-weight:normal; color:#2770B5}
+</style>
+
+<script type="text/javascript">
+$(function(){
+	$('#ChinaMap').SVGMap({
+		mapName: 'china',
+		mapWidth: 1000,
+		mapHeight: 800,
+		stateData: {   
+	          
+	                'beijing': {'stateInitColor': 5},
+	                'shaanxi': {'stateInitColor': 4},
+	                'hubei': {'stateInitColor': 4},
+	                'zhejiang': {'stateInitColor': 1},
+	                'jiangsu': {'stateInitColor': 3},
+	                'jilin': {'stateInitColor': 4},
+	                'shanghai': {'stateInitColor': 3},
+	                'guangdong': {'stateInitColor': 2},
+	                'shandong': {'stateInitColor': 3},
+	                'sichuan': {'stateInitColor': 1},
+	                'guangxi': {'stateInitColor': 1}
+            	},
+		stateTipHtml: function(stateData, obj){  
+		  var str = '';
+		    for(i in message[obj.id]){
+			  str = str + message[obj.id][i].name+'&nbsp'+ message[obj.id][i].adress + '&nbspTel:' + message[obj.id][i].tel+'</br>'
+			}
+		
+		if(obj.id == 'jilin'){
+		  return  '<font color="#007500" size="4" face="黑体"><b>⭐'+obj.name+'</b></br>----------</br>'+str+'</font>';
+		}else{
+		  return  '<font color="#007500" size="4" face="黑体"><b>'+obj.name+'</b></br>----------</br>'+str+'</font>';
+		}
+			
+        },
+		// showTip: false, 
+	});
+
+});
+
+var message = {
+ 'beijing': [
+   {"name":"夏好辰","tel":"18843011410","adress":"北京市/大兴区"},
+   {"name":"高晗","tel":"18610767596","adress":"北京市/海淀区"},
+   {"name":"穆玉升","tel":"18843010981","adress":"北京市/朝阳区"},
+   {"name":"王炜超","tel":"15297609702","adress":"北京市/海淀区"},
+   {"name":"王戌萌","tel":"17801305278","adress":"北京市/东城区"},
+   {"name":"周海彤","tel":"15041582157","adress":"北京市/海淀区"}
+   ],
+   
+  'shaanxi':[
+   {"name":"马嘉武","tel":"15091867619","adress":"陕西省/西安市/新城区"},
+   {"name":"李申亮","tel":"18843011029","adress":"陕西省/西安市/长安区"},
+   {"name":"闫虎虎","tel":"18829258064","adress":"陕西省/西安市/碑林区"},
+   {"name":"张颖怡","tel":"18329568439","adress":"陕西省/咸阳市/三原县"}
+   ],
+   
+  'hubei':[
+   {"name":"何健","tel":"18843010927","adress":"湖北省/武汉市/洪山区"},
+   {"name":"周子翔","tel":"18843010905","adress":"湖北省/武汉市/洪山区"},
+   {"name":"曹贯男","tel":"13271202319","adress":"湖北省/武汉市/洪山区"},
+   {"name":"刘乐乐","tel":"18843112097","adress":"湖北省/武汉市/东西湖区"}
+   ],
+   
+   'zhejiang':[
+   {"name":"卢洋","tel":"18743229988","adress":"浙江省/杭州市/西湖区"}
+   ],
+   
+  'jiangsu': [
+   {"name":"谢程燕","tel":"15850503662","adress":"江苏省/南京市/玄武区"},
+   {"name":"赵祥志","tel":"18626656316","adress":"江苏省/无锡市/江阴市"},
+   {"name":"谢俊杨","tel":"18843011402","adress":"江苏省/南京市/江宁区"}
+   ],
+   'jilin':[
+   {"name":"朱家俊","tel":"15764323937","adress":"吉林省/长春市/南关区"},
+   {"name":"孙少龙","tel":"15764323385","adress":"吉林省/长春市/南关区"},
+   {"name":"张乃文","tel":"18204509928","adress":"吉林省/长春市/长春汽车经济技术开发区"},
+   {"name":"张松林","tel":"18843103680","adress":"吉林省/长春市/南关区"}
+   ],
+   
+   'shanghai':[
+   {"name":"王浩","tel":"18521306585","adress":"上海市/闵行区"},
+   {"name":"辛靖豪","tel":"18521309680","adress":"上海市/闵行区"},
+   {"name":"赵锐","tel":"15043065600","adress":"上海市/嘉定区"}
+   ],
+   'guangdong':[
+   {"name":"张龙滨","tel":"15545813979","adress":"广东省/深圳市/宝安区"},
+   {"name":"吴俊泉","tel":"13500821401","adress":"广东省/佛山市/南海区"}
+   ],
+   
+  'shandong':[
+   {"name":"王小锐","tel":"18843104265","adress":"山东省/青岛市/黄岛区"},
+   {"name":"任笑余","tel":"18946765426","adress":"山东省/济南市/历城区"},
+   {"name":"安乐","tel":"19861891801","adress":"山东省/济南市/济南高新技术产业开发区"}
+   ],
+   'sichuan':[
+   {"name":"何鑫","tel":"18843104288","adress":"四川省/成都市/郫都区"}
+   ],
+   'guangxi':[
+   {"name":"吴凯","tel":"18853010976","adress":"广西壮族自治区/南宁市/青秀区"}
+   ]
+}
+</script>
+</head>
+<body>
+	<div class="items" id="Item0" align='center'>
+            <h1>吉林大学南岭校区2015级自动化8班</h1>
+            <a href="javascript:;" class="fold"></a>
+            <div class="itemCon">
+            	<div id="ChinaMap"></div>
+	        </div>
+	</div>
+	<div class="items" id="Item1" align='center' style="margin-top: 20px">
+	<div><iframe height="400px" width="45%" src='https://player.youku.com/embed/XNDUyNjQzODM2NA==' allowfullscreen></iframe></div>
+	<div style="margin-top: 30px"><iframe id="lyb"   frameborder=”no” border=”0″  width="45%" height="400px" src="http://muyusheng.com:7008"/></div>
+	</div>
+<style type="text/css">
+</style>
+<link rel="stylesheet" type="text/css" href="css/SyntaxHighlighter.css">
+<script type="text/javascript" src="js/lib/SyntaxHighlighter.js"></script>
+</body>
+</html>
