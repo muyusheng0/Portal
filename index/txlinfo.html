@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>同学录信息更新</title>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <script type="text/javascript" src="./layui/layui.js"></script>
+</head>
+<body style="background:url(images/txlbj.jpg )">
+<div class="layui-fluid">
+    <div class="layui-row " style="margin-top: 100px">
+        <div class="layui-col-md6 layui-col-md-offset3">
+            <form class="layui-form" action="/updateInfo"  lay-filter="my_info_form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-font-16">姓名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="name" disabled autocomplete="off" class="layui-input layui-disabled">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-font-16">学号</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="xhid" disabled autocomplete="off" class="layui-input layui-disabled">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-font-16">联系方式</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="phone"  autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label layui-font-16">所在省份</label>
+                        <div class="layui-input-inline">
+                            <select name="province" lay-verify="required" lay-search="">
+                                <option value="">直接选择或搜索选择</option>
+                                <option value="heilongjiang">黑龙江</option>
+                                <option value="jilin    ">吉林</option>
+                                <option value="liaoning ">辽宁</option>
+                                <option value="hebei:   ">河北</option>
+                                <option value="shandong ">山东</option>
+                                <option value="jiangsu  ">江苏</option>
+                                <option value="zhejiang ">浙江</option>
+                                <option value="anhui    ">安徽</option>
+                                <option value="henan    ">河南</option>
+                                <option value="shanxi   ">山西</option>
+                                <option value="shaanxi  ">陕西</option>
+                                <option value="gansu    ">甘肃</option>
+                                <option value="hubei    ">湖北</option>
+                                <option value="jiangxi  ">江西</option>
+                                <option value="fujian   ">福建</option>
+                                <option value="hunan    ">湖南</option>
+                                <option value="guizhou  ">贵州</option>
+                                <option value="sichuan  ">四川</option>
+                                <option value="yunnan   ">云南</option>
+                                <option value="qinghai  ">青海</option>
+                                <option value="hainan   ">海南</option>
+                                <option value="shanghai ">上海</option>
+                                <option value="chongqing">重庆</option>
+                                <option value="tianjin  ">天津</option>
+                                <option value="beijing  ">北京</option>
+                                <option value="ningxia  ">宁夏</option>
+                                <option value="neimongol">内蒙古</option>
+                                <option value="guangxi  ">广西</option>
+                                <option value="xinjiang ">新疆</option>
+                                <option value="xizang   ">西藏</option>
+                                <option value="guangdong">广东</option>
+                                <option value="hongkong ">香港</option>
+                                <option value="taiwan   ">台湾</option>
+                                <option value="macau    ">澳门</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-font-16">所在城市</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="city"  autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-font-16">所在区县</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="county"  autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-font-16">从事行业</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="job" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button type="submit" class="layui-btn layui-btn-lg layui-font-20" lay-submit="" lay-filter="updateInfo">提交
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    layui.use(function () {
+        var layer, form, laypage, laydate, $;
+        layer = layui.layer
+            , form = layui.form
+            , laypage = layui.laypage
+            , laydate = layui.laydate
+            , $ = layui.jquery;
+
+        layer.open({
+            type: 1
+            ,
+            title: ['<i class="layui-icon layui-icon-username" style="font-size: 30px; color: #0decec;"></i> 身份确认', 'font-size:20px;']
+            ,
+            id: 'layerDemo_set' //防止重复弹出
+            ,
+            area: ['600px', '500px']
+            ,
+            shade: 0.6
+            ,
+            success: function (layero, index) {
+                form.render();
+            }
+            ,
+            btnAlign: 'c'
+            ,
+            btn: []
+            ,
+            cancel: function () {
+
+            }
+            ,
+            content: ['<form class="layui-form layui-form-pane"  method="post" action="/personaldata" style="margin: 35px;">'
+                , '<li class="layui-form-item">'
+                , '<label class="layui-form-label layui-font-20">学号</label>'
+                , '<div class="layui-input-block">'
+                , '<input type="text" name="xhid" lay-verify="required" lay-reqtext="" placeholder="" autocomplete="off" class="layui-input">'
+                , '</div>'
+                , '</li>'
+                , '<li class="layui-form-item">'
+                , '<label class="layui-form-label layui-font-20">姓名</label>'
+                , '<div class="layui-input-block">'
+                , '<input type="text" name="name" lay-verify="required" lay-reqtext="" placeholder="" autocomplete="off" class="layui-input">'
+                , '</div>'
+                , '</li>'
+                , ' <div class="layui-form-item" style="margin: 80px">'
+                , '    <div class="layui-input-block">'
+                , '      <button class="layui-btn layui-btn-lg" lay-submit lay-filter="formIdentity layui-font-20">确定</button>'
+                , '    </div>'
+                , '  </div>'
+                , '</ul>'].join('')
+        });
+
+        //身份验证提交
+        form.on('submit(formIdentity)', function (data) {
+
+            layer.msg(JSON.stringify(data.field));
+            var resData = JSON.parse(data);
+            if(resData.flag == -4){
+                layer.msg('姓名或学号输入不正确', {
+                      icon: 16
+                    , shade: 0.01
+                    , time: 1500
+                });
+
+            }else if(resData.flag == 0){
+                layer.close();
+                var formVal = resData.data;
+                formVal.pwd = resData.pwd;
+                form.val('my_info_form', formVal);
+
+            }else{
+
+                layer.msg('网络请求失败', {
+                      icon: 16
+                    , shade: 0.01
+                    , time: 1500
+                });
+
+            }
+
+        });
+
+        //信息更新提交
+        form.on('submit(updateInfo)', function (data) {
+            window.location = 'http://muyusheng.com/auto';
+        });
+
+
+    })
+
+
+</script>
+
+</body>
+</html>
