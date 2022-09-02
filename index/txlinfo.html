@@ -11,7 +11,7 @@
 <div class="layui-fluid">
     <div class="layui-row " style="margin-top: 100px">
         <div class="layui-col-md6 layui-col-md-offset3">
-            <form class="layui-form" action="/updateInfo"  lay-filter="my_info_form">
+            <form class="layui-form" action="/updateInfo" method="post" lay-filter="my_info_form">
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-font-16">姓名</label>
                     <div class="layui-input-block">
@@ -93,6 +93,17 @@
                     </div>
                 </div>
                 <div class="layui-form-item">
+                    <label class="layui-form-label layui-font-16">从事行业</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="job" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item layui-hide">
+                    <div class="layui-input-block">
+                        <input type="text" name="pwd" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
                     <div class="layui-input-block">
                         <button type="submit" class="layui-btn layui-btn-lg layui-font-20" lay-submit="" lay-filter="updateInfo">提交
                         </button>
@@ -160,7 +171,7 @@
         form.on('submit(formIdentity)', function (data) {
 
             //layer.msg(JSON.stringify(data.field));
-            var resData = JSON.parse(data);
+            var resData = JSON.parse(data.field);
             if(resData.flag == -4){
                 layer.msg('姓名或学号输入不正确', {
                       icon: 16
@@ -169,11 +180,11 @@
                 });
 
             }else if(resData.flag == 0){
-                layer.close();
                 var formVal = resData.data;
                 formVal.pwd = resData.pwd;
+                console.log(formVal);
                 form.val('my_info_form', formVal);
-
+                layer.close();
             }else{
 
                 layer.msg('网络请求失败', {
