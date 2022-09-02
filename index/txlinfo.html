@@ -159,7 +159,7 @@
         //身份验证提交
         form.on('submit(formIdentity)', function (data) {
 
-            layer.msg(JSON.stringify(data.field));
+            //layer.msg(JSON.stringify(data.field));
             var resData = JSON.parse(data);
             if(resData.flag == -4){
                 layer.msg('姓名或学号输入不正确', {
