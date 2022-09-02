@@ -13,7 +13,7 @@
 <div class="layui-fluid">
     <div class="layui-row " style="margin-top: 100px">
         <div class="layui-col-md6 layui-col-md-offset3">
-            <form class="layui-form" action="/updateInfo" method="post" lay-filter="my_info_form" >
+            <form class="layui-form" id="sendInfoForm" action="/updateInfo" method="post" lay-filter="my_info_form">
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-font-16">姓名</label>
                     <div class="layui-input-block">
@@ -29,7 +29,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-font-16">联系方式</label>
                     <div class="layui-input-block">
-                        <input type="text" name="phone"  autocomplete="off" class="layui-input">
+                        <input type="text" name="phone" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -79,13 +79,13 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-font-16">所在城市</label>
                     <div class="layui-input-block">
-                        <input type="text" name="city"  autocomplete="off" class="layui-input">
+                        <input type="text" name="city" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-font-16">所在区县</label>
                     <div class="layui-input-block">
-                        <input type="text" name="county"  autocomplete="off" class="layui-input">
+                        <input type="text" name="county" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -101,7 +101,8 @@
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-input-block">
-                        <button type="submit" class="layui-btn layui-btn-lg layui-font-20" lay-submit="" lay-filter="updateInfo">提交
+                        <button type="submit" class="layui-btn layui-btn-lg layui-font-20" lay-submit=""
+                                lay-filter="updateInfo">提交
                         </button>
                     </div>
                 </div>
@@ -119,7 +120,7 @@
             , laydate = layui.laydate
             , $ = layui.jquery;
 
-       var queren_index =  layer.open({
+        var queren_index = layer.open({
             type: 1
             ,
             title: ['<i class="layui-icon layui-icon-username" style="font-size: 30px; color: #0decec;"></i> 身份确认', 'font-size:20px;']
@@ -170,20 +171,21 @@
                 console.log(data);
                 data = JSON.stringify(data);
                 var resData = JSON.parse(data);
-                if(resData.flag == -4){
+                if (resData.flag == -4) {
                     layer.msg('姓名或学号输入不正确', {
                         icon: 2
                         , shade: 0.01
                         , time: 1500
                     });
 
-                }else if(resData.flag == 0){
+                } else if (resData.flag == 0) {
                     var formVal = resData.data;
                     formVal.pwd = resData.pwd;
                     form.val('my_info_form', formVal);
                     $(".selector").val(formVal.province);
+                    form.render('select');
                     layer.close(queren_index);
-                }else{
+                } else {
 
                     layer.msg('网络请求失败', {
                         icon: 2
@@ -200,7 +202,28 @@
 
         //信息更新提交
         form.on('submit(updateInfo)', function (data) {
-            window.location = 'http://jlu8.cn/auto';
+
+            $("#sendInfoForm").ajaxSubmit(function (data) {
+                console.log(data);
+                data = JSON.stringify(data);
+                var resData = JSON.parse(data);
+                if (resData.flag == 0) {
+                    layer.msg('信息更新成功！', {
+                        icon: 1
+                        , shade: 0.01
+                        , time: 1500
+                    });
+                    window.location = 'http://jlu8.cn/auto';
+
+                } else {
+
+                    layer.msg('信息更新失败！', {
+                        icon: 2
+                        , shade: 0.01
+                        , time: 1500
+                    });
+                }
+            })
             return false;
         });
 
