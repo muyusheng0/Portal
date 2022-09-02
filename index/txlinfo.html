@@ -126,7 +126,7 @@
             title: ['<i class="layui-icon layui-icon-username" style="font-size: 30px; color: #0decec;"></i> 身份确认', 'font-size:20px;']
             ,
             id: 'layerDemo_set' //防止重复弹出
-            ,area: ['50%', '50%']
+            ,area: ['90%', '80%']
             ,
             shade: 0.6
             ,
@@ -145,20 +145,20 @@
             content: ['<div class="layui-fluid">'
                 , '<form class="layui-form layui-form-pane"  id="querenform" method="post" action="/personaldata" style="margin: 35px;">'
                 , '<li class="layui-form-item">'
-                , '<label class="layui-form-label layui-font-20">学号</label>'
+                , '<label class="layui-form-label">学号</label>'
                 , '<div class="layui-input-block">'
                 , '<input type="text" name="xhid" lay-verify="required" lay-reqtext="" placeholder="" autocomplete="off" class="layui-input">'
                 , '</div>'
                 , '</li>'
                 , '<li class="layui-form-item">'
-                , '<label class="layui-form-label layui-font-20">姓名</label>'
+                , '<label class="layui-form-label ">姓名</label>'
                 , '<div class="layui-input-block">'
                 , '<input type="text" name="name" lay-verify="required" lay-reqtext="" placeholder="" autocomplete="off" class="layui-input">'
                 , '</div>'
                 , '</li>'
                 , ' <div class="layui-form-item" style="margin: 80px">'
                 , '    <div class="layui-input-block">'
-                , '      <button class="layui-btn layui-btn-lg layui-font-20" lay-submit lay-filter="formIdentity">确定</button>'
+                , '      <button class="layui-btn layui-btn-lg" lay-submit lay-filter="formIdentity">确定</button>'
                 , '    </div>'
                 , '  </div>'
                 , '</form></div>'].join('')
