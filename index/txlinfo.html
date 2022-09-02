@@ -13,7 +13,7 @@
 <div class="layui-fluid">
     <div class="layui-row " style="margin-top: 100px">
         <div class="layui-col-md6 layui-col-md-offset3">
-            <form class="layui-form" action="/updateInfo" method="post" lay-filter="my_info_form" onsubmit = "return false">
+            <form class="layui-form" action="/updateInfo" method="post" lay-filter="my_info_form" >
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-font-16">姓名</label>
                     <div class="layui-input-block">
@@ -142,7 +142,7 @@
 
             }
             ,
-            content: ['<form class="layui-form layui-form-pane"  id="querenform" method="post" action="/personaldata" onsubmit = "return false" style="margin: 35px;">'
+            content: ['<form class="layui-form layui-form-pane"  id="querenform" method="post" action="/personaldata" style="margin: 35px;">'
                 , '<li class="layui-form-item">'
                 , '<label class="layui-form-label layui-font-20">学号</label>'
                 , '<div class="layui-input-block">'
@@ -157,15 +157,18 @@
                 , '</li>'
                 , ' <div class="layui-form-item" style="margin: 80px">'
                 , '    <div class="layui-input-block">'
-                , '      <button class="layui-btn layui-btn-lg" lay-submit lay-filter="formIdentity layui-font-20">确定</button>'
+                , '      <button class="layui-btn layui-btn-lg layui-font-20" lay-submit lay-filter="formIdentity">确定</button>'
                 , '    </div>'
                 , '  </div>'
                 , '</ul>'].join('')
         });
 
 
-        $("#querenform").ajaxSubmit(function (data) {
+        form.on('submit(formIdentity)', function (data) {
+
+            $("#querenform").ajaxSubmit(function (data) {
                 console.log(data);
+                data = JSON.stringify(data);
                 var resData = JSON.parse(data);
                 if(resData.flag == -4){
                     layer.msg('姓名或学号输入不正确', {
@@ -189,7 +192,11 @@
                     });
 
                 }
+            });
+
+            return false;
         });
+
 
         //信息更新提交
         form.on('submit(updateInfo)', function (data) {
