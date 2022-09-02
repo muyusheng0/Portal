@@ -6,12 +6,13 @@
     <title>同学录信息更新</title>
     <link rel="stylesheet" href="./layui/css/layui.css">
     <script type="text/javascript" src="./layui/layui.js"></script>
+    <script type="text/javascript" src="./js/jquery.form.js"></script>
 </head>
 <body style="background:url(images/txlbj.jpg )">
 <div class="layui-fluid">
     <div class="layui-row " style="margin-top: 100px">
         <div class="layui-col-md6 layui-col-md-offset3">
-            <form class="layui-form" action="/updateInfo" method="post" lay-filter="my_info_form">
+            <form class="layui-form" action="/updateInfo" method="post" lay-filter="my_info_form" onsubmit = "return false">
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-font-16">姓名</label>
                     <div class="layui-input-block">
@@ -92,12 +93,6 @@
                         <input type="text" name="job" autocomplete="off" class="layui-input">
                     </div>
                 </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label layui-font-16">从事行业</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="job" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
                 <div class="layui-form-item layui-hide">
                     <div class="layui-input-block">
                         <input type="text" name="pwd" autocomplete="off" class="layui-input">
@@ -146,7 +141,7 @@
 
             }
             ,
-            content: ['<form class="layui-form layui-form-pane"  method="post" action="/personaldata" style="margin: 35px;">'
+            content: ['<form class="layui-form layui-form-pane"  id="querenform" method="post" action="/personaldata" onsubmit = "return false" style="margin: 35px;">'
                 , '<li class="layui-form-item">'
                 , '<label class="layui-form-label layui-font-20">学号</label>'
                 , '<div class="layui-input-block">'
@@ -167,40 +162,38 @@
                 , '</ul>'].join('')
         });
 
-        //身份验证提交
-        form.on('submit(formIdentity)', function (data) {
 
-            //layer.msg(JSON.stringify(data.field));
-            var resData = JSON.parse(data.field);
-            if(resData.flag == -4){
-                layer.msg('姓名或学号输入不正确', {
-                      icon: 16
-                    , shade: 0.01
-                    , time: 1500
-                });
+        $("#querenform").ajaxSubmit(function (data) {
+                console.log(data);
+                var resData = JSON.parse(data.field);
+                if(resData.flag == -4){
+                    layer.msg('姓名或学号输入不正确', {
+                        icon: 16
+                        , shade: 0.01
+                        , time: 1500
+                    });
 
-            }else if(resData.flag == 0){
-                var formVal = resData.data;
-                formVal.pwd = resData.pwd;
-                console.log(formVal);
-                form.val('my_info_form', formVal);
-                layer.close();
-            }else{
+                }else if(resData.flag == 0){
+                    var formVal = resData.data;
+                    formVal.pwd = resData.pwd;
+                    console.log(formVal);
+                    form.val('my_info_form', formVal);
+                    layer.close();
+                }else{
 
-                layer.msg('网络请求失败', {
-                      icon: 16
-                    , shade: 0.01
-                    , time: 1500
-                });
+                    layer.msg('网络请求失败', {
+                        icon: 16
+                        , shade: 0.01
+                        , time: 1500
+                    });
 
-            }
-            return false;
-
+                }
         });
 
         //信息更新提交
         form.on('submit(updateInfo)', function (data) {
             window.location = 'http://muyusheng.com/auto';
+            return false;
         });
 
 
