@@ -172,14 +172,14 @@
             $('#recordbutton').bind('click',function(){
                 window.location.href='http://muyusheng.com/txlinfo';
             })
-            var message = {};
+            var message;
             $.ajax({
                 url: "/getalldata",
                 type: "POST",
                 dataType: "json",
                 success: function (data) {
-                    console.log('0000000000000000');
-                    console.log(JSON.stringify(data));
+                    data = JSON.stringify(data);
+                    console.log(data);
                     message = JSON.parse(data);//把results字符串转为json对象
 
 					var stateDataTmp ={};
