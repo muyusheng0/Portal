@@ -185,7 +185,7 @@
 					var stateDataTmp ={};
 					for(var city_tmp in message){
 						stateDataTmp[city_tmp] = {
-							'stateInitColor': message[city_tmp].length
+							'stateInitColor':( message[city_tmp].length <=10 ? message[city_tmp].length: 10)
 						}
 					}
 
@@ -197,7 +197,12 @@
 						stateTipHtml: function (stateData, obj) {
 							var str = '';
 							for (i in message[obj.id]) {
-								str = str + message[obj.id][i].name + '&nbsp' + message[obj.id][i].adress + '&nbspTel:' + message[obj.id][i].tel + '</br>'
+                                var province_tmp = message[obj.id][i].province;
+                                if(province_tmp == 'beijing' || province_tmp == 'shanghai' || province_tmp == 'chongqing' || province_tmp == 'tianjin' || province_tmp == 'hongkong' || province_tmp == 'macau'){
+                                    str = str + message[obj.id][i].name + '&nbsp' +  chinaMapConfig.names[province_tmp] + '/' +  message[obj.id][i].county + '&nbspTel:' + message[obj.id][i].phone + '</br>'
+                                }else{
+                                    str = str + message[obj.id][i].name + '&nbsp' +  chinaMapConfig.names[province_tmp] + '/' + message[obj.id][i].city +'/' +  message[obj.id][i].county + '&nbspTel:' + message[obj.id][i].phone + '</br>'
+                                }
 							}
 
 							if (obj.id == 'jilin') {
