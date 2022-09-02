@@ -182,8 +182,8 @@
                     var formVal = resData.data;
                     formVal.pwd = resData.pwd;
                     form.val('my_info_form', formVal);
-                    $('#select_province').val(formVal.province);
-                    form.render();
+                    $('#select_province').find("option[value="+formVal.province+"]").attr("selected",true);
+                    form.render('select')
                     layer.close(queren_index);
                 } else {
 
