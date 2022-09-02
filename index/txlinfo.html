@@ -126,8 +126,7 @@
             title: ['<i class="layui-icon layui-icon-username" style="font-size: 30px; color: #0decec;"></i> 身份确认', 'font-size:20px;']
             ,
             id: 'layerDemo_set' //防止重复弹出
-            ,
-            area: ['600px', '500px']
+            ,area: ['600px', '500px']
             ,
             shade: 0.6
             ,
@@ -143,7 +142,8 @@
 
             }
             ,
-            content: ['<form class="layui-form layui-form-pane"  id="querenform" method="post" action="/personaldata" style="margin: 35px;">'
+            content: ['<div class="layui-fluid">'
+                , '<form class="layui-form layui-form-pane"  id="querenform" method="post" action="/personaldata" style="margin: 35px;">'
                 , '<li class="layui-form-item">'
                 , '<label class="layui-form-label layui-font-20">学号</label>'
                 , '<div class="layui-input-block">'
@@ -161,7 +161,7 @@
                 , '      <button class="layui-btn layui-btn-lg layui-font-20" lay-submit lay-filter="formIdentity">确定</button>'
                 , '    </div>'
                 , '  </div>'
-                , '</ul>'].join('')
+                , '</form></div>'].join('')
         });
 
 
