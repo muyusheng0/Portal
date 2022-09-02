@@ -119,7 +119,7 @@
             , laydate = layui.laydate
             , $ = layui.jquery;
 
-        layer.open({
+       var queren_index =  layer.open({
             type: 1
             ,
             title: ['<i class="layui-icon layui-icon-username" style="font-size: 30px; color: #0decec;"></i> 身份确认', 'font-size:20px;']
@@ -172,7 +172,7 @@
                 var resData = JSON.parse(data);
                 if(resData.flag == -4){
                     layer.msg('姓名或学号输入不正确', {
-                        icon: 16
+                        icon: 2
                         , shade: 0.01
                         , time: 1500
                     });
@@ -180,13 +180,13 @@
                 }else if(resData.flag == 0){
                     var formVal = resData.data;
                     formVal.pwd = resData.pwd;
-                    console.log(formVal);
                     form.val('my_info_form', formVal);
-                    layer.close();
+                    $(".selector").val(formVal.province);
+                    layer.close(queren_index);
                 }else{
 
                     layer.msg('网络请求失败', {
-                        icon: 16
+                        icon: 2
                         , shade: 0.01
                         , time: 1500
                     });
@@ -200,7 +200,7 @@
 
         //信息更新提交
         form.on('submit(updateInfo)', function (data) {
-            window.location = 'http://muyusheng.com/auto';
+            window.location = 'http://jlu8.cn/auto';
             return false;
         });
 
