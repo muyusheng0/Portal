@@ -185,10 +185,10 @@
 					var stateDataTmp ={};
 					for(var city_tmp in message){
 						stateDataTmp[city_tmp] = {
-							'stateInitColor':( message[city_tmp].length <=10 ? message[city_tmp].length: 10)
+							'stateInitColor':message[city_tmp].length
 						}
 					}
-                    console.log(data);
+                    console.log(stateDataTmp);
 					$('#ChinaMap').SVGMap({
 						mapName: 'china',
 						mapWidth: 1000,
