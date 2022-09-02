@@ -166,7 +166,7 @@
 
         $("#querenform").ajaxSubmit(function (data) {
                 console.log(data);
-                var resData = JSON.parse(data.field);
+                var resData = JSON.parse(data);
                 if(resData.flag == -4){
                     layer.msg('姓名或学号输入不正确', {
                         icon: 16
