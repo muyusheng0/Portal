@@ -29,10 +29,10 @@
 			strokeWidth: 1,
 			strokeColor: 'F9FCFE',
 
-			stateInitColor: 'FFDCB9',
-			stateHoverColor: 'feb41c',
-			stateSelectedColor: 'feb41c',
-			stateDisabledColor: 'eeeeee',
+			stateInitColor: 'FFCC00',
+			stateHoverColor: '99CC33',
+			stateSelectedColor: '99CC33',
+			stateDisabledColor: 'efa128',
 
 			showTip: true,
 			stateTipWidth: 450,
