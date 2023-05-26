@@ -224,25 +224,67 @@
     <script src="monitor.js"></script>
     <script src="js/dialog.min.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
+
         var MQTT_C;
+        var message_count = 0;
+        var co_value = 0;
+        var co2_value = 0;
+        var wind_value = 0;
+        var nh3_value = 0;
+        var temp_value = 0;
+        var hum_value = 0;
+
+        var max_co_value = 1000;
+        var max_co2_value = 1000;
+        var max_wind_value = 1000;
+        var max_nh3_value = 1000;
+        var max_temp_value = 100;
+        var max_hum_value = 100;
+
+        var ctx_co,ctx_co2,ctx_hum,ctx_nh3,ctx_temp,ctx_wind;
+        var Charts_temp,Charts_hum,Charts_nh3,Charts_co2;
+
+        var init_data_temp = [];
+        var init_data_co2 = [];
+        let now = new Date();
+        let oneGap = 1 * 1000;  //时间间隔
         $(function () {
+
             drawLayer02Label($("#layer02_01 canvas").get(0), "服务器连接状态", 80, 200);
             drawLayer02Label($("#layer02_02 canvas").get(0), "设备在线状态", 80, 300);
             drawLayer02Label($("#layer02_03 canvas").get(0), "环境指标条目", 80, 200);
             drawLayer02Label($("#layer02_04 canvas").get(0), "接收消息总数量", 80, 500);
-
             // renderLegend();
             //
             // //饼状图
             // renderChartBar01();
             // //renderChartBar02();
 
-            //存储
-            renderLayer03Right();
+            //数据展板
+             ctx_co = $("#layer03_right_chart_co canvas").get(0).getContext("2d");
+             ctx_co2 = $("#layer03_right_chart_co2 canvas").get(0).getContext("2d");
+             ctx_hum = $("#layer03_right_chart_hum canvas").get(0).getContext("2d");
+             ctx_nh3 = $("#layer03_right_chart_nh3 canvas").get(0).getContext("2d");
+             ctx_temp = $("#layer03_right_chart_temp canvas").get(0).getContext("2d");
+             ctx_wind = $("#layer03_right_chart_wind canvas").get(0).getContext("2d");
+            drawLayer03Right(ctx_co,"#027825",0,co_value);
+            drawLayer03Right(ctx_co2,"#006DD6",0,co2_value);
+            drawLayer03Right(ctx_hum,"#238681",0,hum_value);
+            drawLayer03Right(ctx_nh3,"#740278",0,nh3_value);
+            drawLayer03Right(ctx_temp,"#0032d6",0,temp_value);
+            drawLayer03Right(ctx_wind,"#598623",0,wind_value);
 
-            //30天日均线流量趋势
-            renderLayer04Left("layer04_left_chart");
-            renderLayer04Left("layer04_right_chart");
+
+            for (var i = 0; i < 1000; i++) {
+                init_data_temp.push(randomData());
+                init_data_co2.push(randomData());
+            }
+            init_data_temp = init_data_temp.reverse();
+            init_data_co2 = init_data_co2.reverse();
+            Charts_co2 = echarts.init(document.getElementById('charts_co2'));
+            Charts_temp = echarts.init(document.getElementById('charts_temp'));
+            InitChart_TEMP(Charts_temp,init_data_temp);
+            InitChart_CO2(Charts_co2,init_data_co2);
 
 
             $("#openDialog").dialog({
@@ -309,6 +351,7 @@
             })
 
             MQTT_C.on('message', function (topic, message, packet) {
+                message_count = message_count + 1;
                 var message_body;
                 if(document.getElementById("_hex").checked) {
                     message_body = message.toString("hex");
@@ -317,26 +360,94 @@
                 }
                 var message_str = 'Received topic ' + topic + ' message: ' + message_body + '\n';
                 console.log(message_str)
+                resolve_data(message_body)
             })
 
             MQTT_C.on('close', function () {
                 document.getElementById("connect_status").innerHTML = "连接失败请重试!";
                 console.log(clientId + ' disconnected')
             })
-
-
         }
 
-        function stringToHex(str) {
-            var val = "";
-            for (var i = 0; i < str.length; i++) {
-
-                if (val == "")
-                    val = str.charCodeAt(i).toString(16);
-                else
-                    val += "," + str.charCodeAt(i).toString(16);
+        function resolve_data(message_in){
+            document.getElementById("mqtt_message_count").innerHTML = message_count.toString();
+            if(message_in.length != 14 && message_in.length != 18){
+               return;
             }
-            return val;
+            var value_tmp;
+            if(message_in[5] == 2){
+                value_tmp =  message_in.substring(6,10);
+            }else if(message_in[5] == 4){
+                value_tmp =  message_in.substring(6,14);
+            }
+            var data_res = parseInt(value_tmp,16);
+            switch (message_in[1]){
+                case '5':   //一氧化碳
+                    co_value = data_res;
+                    var p_co = co_value/max_co_value;
+                    drawLayer03Right(ctx_co,"#027825",p_co,co_value);
+                    break;
+                case '7':   //二氧化碳
+                    co2_value = data_res;
+                    var p_co2 = co2_value/max_co2_value;
+                    drawLayer03Right(ctx_co2,"#006DD6",p_co2,co2_value);
+                    init_data_co2.shift();
+                    init_data_co2.push(CreateData(co2_value));
+                    Charts_co2.setOption({
+                        series: [
+                            {
+                                data: init_data_co2
+                            }
+                        ]
+                    });
+                    break;
+                case '1':   //风速
+                    wind_value = data_res;
+                    var p_wind = wind_value/max_wind_value;
+                    drawLayer03Right(ctx_wind,"#598623",p_wind,wind_value);
+                    break;
+                case '4':   //NH3
+                    nh3_value = data_res;
+                    var p_nh3 = nh3_value/max_nh3_value;
+                    drawLayer03Right(ctx_nh3,"#740278",p_nh3,nh3_value);
+                    break;
+                case '2':   //温湿度
+                    temp_value = data_res/65535;
+                    hum_value = data_res%65535;
+                    var p_temp = temp_value/max_temp_value;
+                    var p_hum = hum_value/max_hum_value;
+                    drawLayer03Right(ctx_temp,"#0032d6",p_temp,temp_value);
+                    drawLayer03Right(ctx_hum,"#238681",p_hum,hum_value);
+
+                    init_data_temp.shift();
+                    init_data_temp.push(CreateData(temp_value));
+                    Charts_temp.setOption({
+                        series: [
+                            {
+                                data: init_data_temp
+                            }
+                        ]
+                    });
+
+                    break;
+                default:
+            }
+
+        }
+        function randomData() {
+            now = new Date(+now - oneGap);
+            return {
+                name: now.toString(),
+                value: [now.toLocaleString(),  0]
+            };
+        }
+
+        function CreateData(sensor_value) {
+            sensor_now = new Date();
+            return {
+                name: sensor_now.toString(),
+                value: [sensor_now.toLocaleString(),  sensor_value]
+            };
         }
 
     </script>
@@ -359,7 +470,7 @@
         </div>
         <div id="layer02_02" style="width:22%;">
             <div class="layer02-data">
-                <span style="font-size:20px;">在线</span>
+                <span style="font-size:20px;" id="online_status">在线</span>
             </div>
             <canvas width="200" height="100"></canvas>
         </div>
@@ -371,7 +482,7 @@
         </div>
         <div id="layer02_04" style="width:25%;">
             <div class="layer02-data">
-                <span style="font-size:20px;">50</span>
+                <span style="font-size:20px;" id="mqtt_message_count">0</span>
                 <span style="font-size:16px;">条</span>
             </div>
             <canvas width="200" height="100"></canvas>
@@ -394,49 +505,48 @@
         <!--			</div>-->
         <div id="layer03_right" style="width:95%;" class="layer03-panel">
             <div id="layer03_right_label">实时各项指标</div>
-            <div id="layer03_right_chart01" class="layer03-right-chart">
+            <div id="layer03_right_chart_nh3" class="layer03-right-chart">
                 <canvas width="130" height="150" style="margin:40px 0 0 10px;"></canvas>
-                <div class="layer03-right-chart-label">一氧化碳</div>
+                <div class="layer03-right-chart-label">氨气(ppm)</div>
             </div>
-            <div id="layer03_right_chart02" class="layer03-right-chart">
-                <canvas width="130" height="150" style="margin:40px 0 0 10px;"></canvas>
-                <div class="layer03-right-chart-label">二氧化碳</div>
-            </div>
-            <div id="layer03_right_chart03" class="layer03-right-chart">
-                <canvas width="130" height="150" style="margin:40px 0 0 10px;"></canvas>
-                <div class="layer03-right-chart-label">甲烷</div>
-            </div>
-            <div id="layer03_right_chart04" class="layer03-right-chart">
-                <canvas width="130" height="150" style="margin:40px 0 0 10px;"></canvas>
-                <div class="layer03-right-chart-label">氨气</div>
-            </div>
-            <div id="layer03_right_chart05" class="layer03-right-chart">
+            <div id="layer03_right_chart_temp" class="layer03-right-chart">
                 <canvas width="130" height="150" style="margin:40px 0 0 10px;"></canvas>
                 <div class="layer03-right-chart-label">温度（°C）</div>
             </div>
-            <div id="layer03_right_chart06" class="layer03-right-chart">
+            <div id="layer03_right_chart_hum" class="layer03-right-chart">
                 <canvas width="130" height="150" style="margin:40px 0 0 10px;"></canvas>
                 <div class="layer03-right-chart-label">湿度（%rh）</div>
             </div>
+            <div id="layer03_right_chart_wind" class="layer03-right-chart">
+                <canvas width="130" height="150" style="margin:40px 0 0 10px;"></canvas>
+                <div class="layer03-right-chart-label">通风(m/s)</div>
+            </div>
+            <div id="layer03_right_chart_co" class="layer03-right-chart">
+                <canvas width="130" height="150" style="margin:40px 0 0 10px;"></canvas>
+                <div class="layer03-right-chart-label">一氧化碳(ppm)</div>
+            </div>
+            <div id="layer03_right_chart_co2" class="layer03-right-chart">
+                <canvas width="130" height="150" style="margin:40px 0 0 10px;"></canvas>
+                <div class="layer03-right-chart-label">二氧化碳(ppm)</div>
+            </div>
         </div>
     </div>
-    <div id="layer04" class="layer" style="height:30%;">
+    <div id="layer04" class="layer" style="height:45%;">
         <div id="layer04_left" class="layer04-panel">
-            <div id="layer04_left_label" class="layer04-panel-label">一氧化碳浓度趋势</div>
-            <div id="layer04_left_chart" class="layer04-panel-chart"></div>
+            <div id="charts_temp" class="layer04-panel-chart"></div>
         </div>
         <div id="layer04_right" class="layer04-panel">
-            <div id="layer04_right_label" class="layer04-panel-label">二氧化碳浓度趋势</div>
-            <div id="layer04_right_chart" class="layer04-panel-chart"></div>
+            <div id="charts_co2" class="layer04-panel-chart"></div>
         </div>
-
-        <!--			<div id="layer04_right" class="layer04-panel">-->
-        <!--				<div id="layer04_right_label" class="layer04-panel-label">-->
-        <!--					<span>集群性能/</span><span style="color:#00A09A;">近一个小时</span>-->
-        <!--				</div>-->
-        <!--				<div id="layer04_right_chart" class="layer04-panel-chart"></div>-->
-        <!--			</div>-->
     </div>
+<!--    <div id="layer05" class="layer" style="height:40%;">-->
+<!--        <div id="layer05_left" class="layer04-panel">-->
+<!--            <div id="charts_hum" class="layer04-panel-chart"></div>-->
+<!--        </div>-->
+<!--        <div id="layer06_right" class="layer04-panel">-->
+<!--            <div id="charts_nh3" class="layer04-panel-chart"></div>-->
+<!--        </div>-->
+<!--    </div>-->
 </div>
 </body>
 </html>
