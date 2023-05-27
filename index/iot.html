@@ -235,8 +235,8 @@
         var hum_value = 0;
 
         var max_co_value = 1000;
-        var max_co2_value = 1000;
-        var max_wind_value = 1000;
+        var max_co2_value = 2000;
+        var max_wind_value = 100;
         var max_nh3_value = 1000;
         var max_temp_value = 100;
         var max_hum_value = 100;
@@ -374,11 +374,16 @@
             if(message_in.length != 14 && message_in.length != 18){
                return;
             }
-            var value_tmp;
+            var value_tmp = 0;
+            var my_temp_value = 0;
+            var my_hum_value = 0;
             if(message_in[5] == 2){
                 value_tmp =  message_in.substring(6,10);
             }else if(message_in[5] == 4){
-                value_tmp =  message_in.substring(6,14);
+                my_temp_value =  message_in.substring(6,10);
+                my_hum_value = message_in.substring(10,14);
+                hum_value = parseInt(my_temp_value,16)/10;
+                temp_value = parseInt(my_hum_value,16)/10;
             }
             var data_res = parseInt(value_tmp,16);
             switch (message_in[1]){
@@ -402,7 +407,7 @@
                     });
                     break;
                 case '1':   //风速
-                    wind_value = data_res;
+                    wind_value = data_res/10;
                     var p_wind = wind_value/max_wind_value;
                     drawLayer03Right(ctx_wind,"#598623",p_wind,wind_value);
                     break;
@@ -412,8 +417,6 @@
                     drawLayer03Right(ctx_nh3,"#740278",p_nh3,nh3_value);
                     break;
                 case '2':   //温湿度
-                    temp_value = data_res/65535;
-                    hum_value = data_res%65535;
                     var p_temp = temp_value/max_temp_value;
                     var p_hum = hum_value/max_hum_value;
                     drawLayer03Right(ctx_temp,"#0032d6",p_temp,temp_value);

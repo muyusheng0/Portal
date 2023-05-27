@@ -233,7 +233,7 @@ function InitChart_TEMP(myChart,init_data){
 		},
 		name:'温度',
 		min: -40,
-		max: 40,
+		max: 50,
 		axisLabel: {
 			formatter: '{value} °C'
 		}
@@ -286,7 +286,7 @@ function InitChart_CO2(myChart,init_data){
 			},
 			name:'浓度(ppm)',
 			min: 0,
-			max: 1000,
+			max: 2000,
 			axisLabel: {
 				formatter: '{value}'
 			}
