@@ -302,15 +302,34 @@
                return;
             }
             var value_tmp = 0;
-            var my_temp_value = 0;
-            var my_hum_value = 0;
+            var temp_value_str = 0;
+            var hum_value_str = 0;
             if(message_in[5] == 2){
                 value_tmp =  message_in.substring(6,10);
             }else if(message_in[5] == 4){
-                my_temp_value =  message_in.substring(6,10);
-                my_hum_value = message_in.substring(10,14);
-                hum_value = parseInt(my_temp_value,16)/10;
-                temp_value = parseInt(my_hum_value,16)/10;
+                hum_value_str =  message_in.substring(6,10);
+                temp_value_str = message_in.substring(10,14);
+                
+                var temp_int = parseInt(temp_value_str,16);
+                var hum_int = parseInt(hum_value_str,16);
+                var symbol_temp = 0x8000;
+                if((temp_int & symbol_temp) == symbol_temp){
+                    temp_int = (temp_int & 0x7fff)-1;
+                    var str_temp_tmp = temp_int.toString(2);
+                    var str_temp_new = "";
+                    for(var i = 0; i < str_temp_tmp.length; i++){
+                        if(str_temp_tmp.charAt(i) == '0'){
+                            str_temp_new += "1";
+                        }else{
+                            str_temp_new += "0";
+                        }
+                    }
+                    temp_int = parseInt(str_temp_new,2);   
+                   
+                }
+                    temp_value = temp_int/10;
+                
+                hum_value = hum_int/10;
             }
             var data_res = parseInt(value_tmp,16);
             switch (message_in[1]){
